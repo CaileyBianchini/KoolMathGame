@@ -7,19 +7,19 @@ namespace MathForGames
 {
     class Game
     {
-        private static bool gameOver = false;
+        private static bool _gameOver = false;
 
         //Static function used to set game over without an instance of game.
         public static void SetGameOver(bool value)
         {
-            gameOver = value;
+            _gameOver = value;
         }
 
 
         //Called when the game begins. Use this for initialization.
         public void Start()
         {
-            //test test
+            
         }
 
 
@@ -48,7 +48,7 @@ namespace MathForGames
         {
             Start();
 
-            while(gameOver == false)
+            while(!_gameOver)
             {
                 Update();
                 Draw();
