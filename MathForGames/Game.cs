@@ -8,6 +8,8 @@ namespace MathForGames
     class Game
     {
         private static bool _gameOver = false;
+        private Scene _scene;
+        private Entity _entity;
 
         //Static function used to set game over without an instance of game.
         public static void SetGameOver(bool value)
@@ -19,20 +21,23 @@ namespace MathForGames
         //Called when the game begins. Use this for initialization.
         public void Start()
         {
-            
+            _scene = new Scene();
+            Entity entity = new Entity();
+            _scene.AddEntity(entity);
         }
 
 
         //Called every frame.
         public void Update()
         {
-
+            _scene.Update();
         }
 
         //Used to display objects and other info on the screen.
         public void Draw()
         {
-
+            Console.Clear();
+            _scene.Draw();
         }
 
 
@@ -52,6 +57,7 @@ namespace MathForGames
             {
                 Update();
                 Draw();
+                Console.ReadKey(false); //doesn't print the letter that is put in
             }
 
             End();

@@ -21,6 +21,7 @@ namespace MathForGames
 
         public void Draw()
         {
+            Console.SetCursorPosition(_x, 0);
             Console.Write(_icon);
         }
 
