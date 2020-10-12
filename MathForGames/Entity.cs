@@ -6,6 +6,9 @@ namespace MathForGames
 {
     class Entity
     {
+        private char _icon = ' ';
+        private int _x = 0;
+
         public void Start()
         {
             
@@ -13,12 +16,12 @@ namespace MathForGames
 
         public void Update()
         {
-
+            _x++;
         }
 
         public void Draw()
         {
-
+            Console.Write(_icon);
         }
 
         public void End()
