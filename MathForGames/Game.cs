@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace MathForGames
 {
@@ -17,6 +18,20 @@ namespace MathForGames
             _gameOver = value;
         }
 
+        //return wether or not specified console key is pressed
+        public static bool CheckKey(ConsoleKey key)
+        {
+            if (Console.KeyAvailable)
+            {
+                if (Console.In.Peek() == (int)key)
+                {
+                    Console.ReadKey(true);
+                    return true;
+                }
+            }
+            return false;
+        }
+
 
         //Called when the game begins. Use this for initialization.
         public void Start()
@@ -30,6 +45,7 @@ namespace MathForGames
         //Called every frame.
         public void Update()
         {
+
             _scene.Update();
         }
 
@@ -57,7 +73,8 @@ namespace MathForGames
             {
                 Update();
                 Draw();
-                Console.ReadKey(false); //doesn't print the letter that is put in
+                while (Console.KeyAvailable) Console.ReadKey(true);
+                Thread.Sleep(250);
             }
 
             End();
