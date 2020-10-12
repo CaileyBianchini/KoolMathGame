@@ -8,7 +8,7 @@ namespace MathForGames
     {
         public void Start()
         {
-
+            
         }
 
         public void Update()
