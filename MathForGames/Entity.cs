@@ -17,22 +17,27 @@ namespace MathForGames
 
         public void Update()
         {
-            if(Game.CheckKey(ConsoleKey.D))
+            ConsoleKey keyPressed = Game.GetNextKey();
+
+            switch(keyPressed)
             {
-                _x++;
+                case ConsoleKey.A:
+                    _x--;
+                    break;
+                case ConsoleKey.D:
+                    _x++;
+                    break;
+                case ConsoleKey.W:
+                    _y--;
+                    break;
+                case ConsoleKey.S:
+                    _y++;
+                    break;
             }
-            if (Game.CheckKey(ConsoleKey.S))
-            {
-                _y++;
-            }
-            if (Game.CheckKey(ConsoleKey.A))
-            {
-                _x--;
-            }
-            if (Game.CheckKey(ConsoleKey.W))
-            {
-                _y--;
-            }
+
+            _x = Math.Clamp(_x, 0, Console.WindowWidth-1);
+            _y = Math.Clamp(_y, 0, Console.WindowHeight-1);
+            
         }
 
         public void Draw()

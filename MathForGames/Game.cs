@@ -18,20 +18,17 @@ namespace MathForGames
             _gameOver = value;
         }
 
-        //return wether or not specified console key is pressed
-        public static bool CheckKey(ConsoleKey key)
-        {
-            if (Console.KeyAvailable)
-            {
-                if (Console.In.Peek() == (int)key)
-                {
-                    Console.ReadKey(true);
-                    return true;
-                }
-            }
-            return false;
-        }
 
+        public static ConsoleKey GetNextKey()
+        {
+            //if the player hasn't pressed a key it will return
+            if(!Console.KeyAvailable)
+            {
+                return 0;
+            }
+            //returns the key that was pressed
+            return Console.ReadKey(true).Key;
+        }
 
         //Called when the game begins. Use this for initialization.
         public void Start()
