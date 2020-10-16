@@ -4,8 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30330.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathForGames", "MathForGames\MathForGames.csproj", "{CB038BE2-FB93-4210-9924-6E8530444AEF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{83D911D7-CCE2-493A-84FD-EF0B80EA0ECE} = {83D911D7-CCE2-493A-84FD-EF0B80EA0ECE}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathLibrary", "MathLibrary\MathLibrary.csproj", "{83D911D7-CCE2-493A-84FD-EF0B80EA0ECE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathLibrary", "MathLibrary\MathLibrary.csproj", "{83D911D7-CCE2-493A-84FD-EF0B80EA0ECE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

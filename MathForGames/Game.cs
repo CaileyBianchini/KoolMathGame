@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
+using MathLibrary;
 
 namespace MathForGames
 {
@@ -10,7 +11,8 @@ namespace MathForGames
     {
         private static bool _gameOver = false;
         private Scene _scene;
-        private Entity _entity;
+
+        public static ConsoleColor DefaultColor { get; set; } = ConsoleColor.White;
 
         //Static function used to set game over without an instance of game.
         public static void SetGameOver(bool value)
@@ -18,31 +20,35 @@ namespace MathForGames
             _gameOver = value;
         }
 
-
         public static ConsoleKey GetNextKey()
         {
-            //if the player hasn't pressed a key it will return
-            if(!Console.KeyAvailable)
+            //If the user hasn't pressed a key return
+            if (!Console.KeyAvailable)
             {
                 return 0;
             }
-            //returns the key that was pressed
+            //Return the key that was pressed
             return Console.ReadKey(true).Key;
         }
 
         //Called when the game begins. Use this for initialization.
         public void Start()
         {
+            Console.CursorVisible = false;
             _scene = new Scene();
-            Entity entity = new Entity();
+            Entity entity = new Entity(0, 0, '■', ConsoleColor.Green);
+            entity.Velocity.X = 1;
+            Player player = new Player(0, 1, '@', ConsoleColor.Red);
+            _scene.AddEntity(player);
             _scene.AddEntity(entity);
+
         }
+
 
 
         //Called every frame.
         public void Update()
         {
-
             _scene.Update();
         }
 
@@ -66,12 +72,14 @@ namespace MathForGames
         {
             Start();
 
-            while(!_gameOver)
+            while (!_gameOver)
             {
+
                 Update();
                 Draw();
-                while (Console.KeyAvailable) Console.ReadKey(true);
-                Thread.Sleep(250);
+                while (Console.KeyAvailable)
+                    Console.ReadKey(true);
+                Thread.Sleep(150);
             }
 
             End();
