@@ -4,7 +4,13 @@ using System.Text;
 
 namespace MathForGames
 {
-    class Maze
+    class Maze : Entity
     {
+        public Maze(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
+            : base(x, y, icon, color)
+        {
+
+        }
+
     }
 }

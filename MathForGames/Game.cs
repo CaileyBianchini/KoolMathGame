@@ -36,15 +36,23 @@ namespace MathForGames
         {
             Console.CursorVisible = false;
             _scene = new Scene();
-            Entity entity = new Entity(0, 0, '■', ConsoleColor.Green);
-            entity.Velocity.X = 1;
-            Player player = new Player(0, 1, '@', ConsoleColor.Red);
+            //Entity entity = new Entity(0, 0, '>', ConsoleColor.Green);
+            //entity.Velocity.X = 1;
+            Player player = new Player(0, 5, '@', ConsoleColor.Green);
             _scene.AddEntity(player);
-            _scene.AddEntity(entity);
+            //_scene.AddEntity(entity);
 
         }
 
-
+        public void MazeWalls()
+        {
+            Console.CursorVisible = true;
+            for (int i = 0; i < 5; i++)
+            {
+                Maze maze = new Maze(1, i, '@', ConsoleColor.Red);
+                _scene.AddEntity(maze);
+            }
+        }
 
         //Called every frame.
         public void Update()
