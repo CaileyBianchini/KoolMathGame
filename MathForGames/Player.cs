@@ -38,5 +38,6 @@ namespace MathForGames
             }
             base.Update();
         }
+
     }
 }
