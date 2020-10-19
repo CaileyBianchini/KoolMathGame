@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Raylib_cs;
 
 namespace MathForGames
 {
@@ -9,7 +10,13 @@ namespace MathForGames
         public Player(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, icon, color)
         {
+            
+        }
 
+        public Player(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
+            : this(x, y, icon, color)
+        {
+            _rayColor = rayColor;
         }
 
         public override void Update()
