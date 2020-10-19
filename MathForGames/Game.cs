@@ -27,7 +27,7 @@ namespace MathForGames
             return _scenes[index];
         }
 
-        public static void AddScene(Scene scene)
+        public static int AddScene(Scene scene)
         {
             Scene[] tempArray = new Scene[_scenes.Length + 1];
 
@@ -36,8 +36,11 @@ namespace MathForGames
                 tempArray[i] = _scenes[i];
             }
 
-            tempArray[_scenes.Length] = scene;
+            int index = _scenes.Length;
+            tempArray[index] = scene;
             _scenes = tempArray;
+
+            return index;
         }
 
         public Game()
@@ -79,23 +82,23 @@ namespace MathForGames
         {
             if (index < 0 || index > _scenes.Length)
                 return;
+            if (_scenes[_currentSceneIndex].Started)
+                _scenes[_currentSceneIndex].End();
 
-            _scenes[_currentSceneIndex].End();
 
             _currentSceneIndex = index;
-
-            _scenes[_currentSceneIndex].Start();
         }
 
-        public static ConsoleKey GetNextKey()
+        public static bool GetKeyDown(int key)
         {
-            //If the user hasn't pressed a key return
-            if (!Console.KeyAvailable)
-            {
-                return 0;
-            }
-            //Return the key that was pressed
-            return Console.ReadKey(true).Key;
+            bool testBool = true;
+            int test = Convert.ToInt32(testBool);
+            return Raylib.IsKeyPressed((KeyboardKey)key);
+        }
+
+        public static bool GetKeyPressed(int key)
+        {
+            return Raylib.IsKeyPressed((KeyboardKey)key);
         }
 
 
@@ -114,16 +117,20 @@ namespace MathForGames
             Scene scene2 = new Scene();
             Scene scene1 = new Scene();
 
-            Entity entity = new Entity(0, 6, '>', ConsoleColor.Green);
-            entity.Velocity.X = 1;
+            //Entity entity = new Entity(0, 6, '>', ConsoleColor.Green);
+            //entity.Velocity.X = 1;
             MazeWalls();
             Player player = new Player(0, 6, Color.RED, '@', ConsoleColor.Green);
             scene2.AddEntity(player);
-            scene2.AddEntity(entity);
+            //scene2.AddEntity(entity);
 
+            int startingSceneIndex = 0;
 
+            startingSceneIndex = AddScene(scene2);
             AddScene(scene1);
-            AddScene(scene2);
+
+            SetCurrentScene(startingSceneIndex);
+
         }
 
 
@@ -287,6 +294,9 @@ namespace MathForGames
         //Called every frame.
         public void Update()
         {
+            if (_scenes[_currentSceneIndex].Started)
+                _scenes[_currentSceneIndex].Start();
+
             _scenes[_currentSceneIndex].Update();
         }
 
@@ -306,7 +316,8 @@ namespace MathForGames
         //Called when the game ends.
         public void End()
         {
-            _scenes[_currentSceneIndex].End();
+            if(_scenes[_currentSceneIndex].Started)
+                _scenes[_currentSceneIndex].End();
         }
 
 
