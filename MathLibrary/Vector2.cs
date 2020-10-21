@@ -70,10 +70,12 @@ namespace MathLibrary
 
         public static Vector2 operator +(Vector2 lhs, Vector2 rhs)
         {
-            float x = lhs.X + rhs.X;
-            float y = lhs.Y + rhs.Y;
+            return new Vector2(lhs.X + rhs.X, lhs.Y + rhs.Y);
+        }
 
-            return new Vector2(x, y);
+        public static Vector2 operator -(Vector2 lhs, Vector2 rhs)
+        {
+            return new Vector2(lhs.X - rhs.X, lhs.Y - rhs.Y);
         }
 
         public static Vector2 operator *(Vector2 lhs, float scalar)

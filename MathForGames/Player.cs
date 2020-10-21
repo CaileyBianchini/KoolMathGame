@@ -8,6 +8,20 @@ namespace MathForGames
 {
     class Player : Entity
     {
+        private float _speed = 1;
+
+        public float Speed
+        {
+            get
+            {
+                return _speed;
+            }
+            set
+            {
+                _speed = value;
+            }
+        }
+
         public Player(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, icon, color)
         {
@@ -20,7 +34,7 @@ namespace MathForGames
             _rayColor = rayColor;
         }
 
-        public override void Update()
+        public override void Update(float deltaTime)
         {
             int xVelocity = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_A)) +
                 Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_D));
@@ -29,29 +43,9 @@ namespace MathForGames
                 Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_S));
 
             Velocity = new Vector2(xVelocity, yVelocity);
+            Velocity = Velocity.Normalized * Speed;
 
-            //ConsoleKey keyPressed = Game.GetNextKey();
-
-            //switch (keyPressed)
-            //{
-            //    case ConsoleKey.A:
-            //        _velocity.X = -1;
-            //        break;
-            //    case ConsoleKey.D:
-            //        _velocity.X = 1;
-            //        break;
-            //    case ConsoleKey.W:
-            //        _velocity.Y = -1;
-            //        break;
-            //    case ConsoleKey.S:
-            //        _velocity.Y = 1;
-            //        break;
-            //    default:
-            //        _velocity.X = 0;
-            //        _velocity.Y = 0;
-            //        break;
-            //}
-            base.Update();
+            base.Update(deltaTime);
         }
 
     }

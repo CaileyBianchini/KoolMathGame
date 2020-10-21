@@ -19,7 +19,7 @@ namespace MathForGames
             _rayColor = rayColor;
         }
 
-        public override void Update()
+        public override void Update(float deltaTime)
         {
             _position += _velocity * 0;
             _position.X = Math.Clamp(_position.X, 0, Console.WindowWidth - 1);

@@ -107,7 +107,7 @@ namespace MathForGames
         {
             //creates a window for raylib
             Raylib.InitWindow(1024, 760, "Math for Games");
-            Raylib.SetTargetFPS(0);
+            Raylib.SetTargetFPS(20);
             
             //Set up console window
             Console.CursorVisible = false;
@@ -115,22 +115,21 @@ namespace MathForGames
 
             //creates new scene for our actors to exsist in
             Scene scene2 = new Scene();
-            Scene scene1 = new Scene();
 
-            //Entity entity = new Entity(0, 6, '>', ConsoleColor.Green);
-            //entity.Velocity.X = 1;
-            MazeWalls();
+            Entity entity = new Entity(0, 6, '>', ConsoleColor.Green);
+            entity.Velocity.X = 1;
             Player player = new Player(0, 6, Color.RED, '@', ConsoleColor.Green);
             scene2.AddEntity(player);
+            player.Speed = 5;
             //scene2.AddEntity(entity);
 
             int startingSceneIndex = 0;
 
             startingSceneIndex = AddScene(scene2);
-            AddScene(scene1);
 
             SetCurrentScene(startingSceneIndex);
 
+            MazeWalls();
         }
 
 
@@ -138,7 +137,6 @@ namespace MathForGames
         public void MazeWalls()
         {
             Scene scene1 = new Scene();
-            AddScene(scene1);
 
             //18 down
             //28 across
@@ -292,12 +290,12 @@ namespace MathForGames
         }
 
         //Called every frame.
-        public void Update()
+        public void Update(float deltaTime)
         {
             if (_scenes[_currentSceneIndex].Started)
                 _scenes[_currentSceneIndex].Start();
 
-            _scenes[_currentSceneIndex].Update();
+            _scenes[_currentSceneIndex].Update(deltaTime);
         }
 
         //Used to display objects and other info on the screen.
@@ -328,12 +326,11 @@ namespace MathForGames
 
             while (!_gameOver && !Raylib.WindowShouldClose())
             {
-
-                Update();
+                float deltaTime = Raylib.GetFrameTime();
+                Update(deltaTime);
                 Draw();
                 while (Console.KeyAvailable)
                     Console.ReadKey(true);
-                Thread.Sleep(150);
             }
 
             End();
