@@ -39,6 +39,19 @@ namespace MathLibrary
             }
         }
 
+        
+        public Vector2()
+        {
+            _x = 0;
+            _y = 0;
+        }
+
+        public Vector2(float x, float y)
+        {
+            _x = x;
+            _y = y;
+        }
+
         public Vector2 Normalized
         {
             get
@@ -56,16 +69,9 @@ namespace MathLibrary
             return vector / vector.Magnitude;
         }
 
-        public Vector2()
+        public static float DotProduct(Vector2 lhs, Vector2 rhs)
         {
-            _x = 0;
-            _y = 0;
-        }
-
-        public Vector2(float x, float y)
-        {
-            _x = x;
-            _y = y;
+            return (lhs.X * rhs.X) + (lhs.Y * rhs.Y);
         }
 
         public static Vector2 operator +(Vector2 lhs, Vector2 rhs)
@@ -87,5 +93,7 @@ namespace MathLibrary
         {
             return new Vector2(lhs.X / scalar, lhs.Y / scalar);
         }
+
+        
     }
 }

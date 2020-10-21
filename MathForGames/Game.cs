@@ -14,6 +14,14 @@ namespace MathForGames
         private static Scene[] _scenes;
         private static int _currentSceneIndex;
 
+        public static int CurrentSceneIndex
+        {
+            get
+            {
+                return _currentSceneIndex;
+            }
+        }
+
         public static ConsoleColor DefaultColor { get; set; } = ConsoleColor.White;
 
         //Static function used to set game over without an instance of game.
@@ -25,6 +33,11 @@ namespace MathForGames
         public static Scene GetScene(int index)
         {
             return _scenes[index];
+        }
+
+        public static Scene GetCurrentScene()
+        {
+            return _scenes[_currentSceneIndex];
         }
 
         public static int AddScene(Scene scene)
@@ -128,8 +141,6 @@ namespace MathForGames
             startingSceneIndex = AddScene(scene2);
 
             SetCurrentScene(startingSceneIndex);
-
-            MazeWalls();
         }
 
 
