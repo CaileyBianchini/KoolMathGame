@@ -22,15 +22,13 @@ namespace MathForGames
 
         public override void Update()
         {
-            int xVelocity = -Convert.ToInt32(Game.GetKeyDown((int)(KeyboardKey.KEY_A))
-                + Convert.ToInt32(Game.GetKeyDown((int)(KeyboardKey.KEY_D));
+            int xVelocity = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_A)) +
+                Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_D));
 
-            int yVelocity = -Convert.ToInt32(Game.GetKeyDown((int)(KeyboardKey.KEY_W))
-                + Convert.ToInt32(Game.GetKeyDown((int)(KeyboardKey.KEY_S));
+            int yVelocity = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_W)) +
+                Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_S));
 
             Velocity = new Vector2(xVelocity, yVelocity);
-            Velocity.X /= Velocity.GetMagnitude();
-            Velocity.Y /= Velocity.GetMagnitude();
 
             //ConsoleKey keyPressed = Game.GetNextKey();
 

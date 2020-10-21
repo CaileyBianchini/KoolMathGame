@@ -31,6 +31,30 @@ namespace MathLibrary
             }
         }
 
+        public float Magnitude
+        {
+            get
+            {
+                return (float)Math.Sqrt(X * X + Y * Y);
+            }
+        }
+
+        public Vector2 Normalized
+        {
+            get
+            {
+                return Normalize(this);
+            }
+        }
+
+        public static Vector2 Normalize(Vector2 vector)
+        {
+            //if its zero then we need a new vector
+            if (vector.Magnitude == 0)
+                return new Vector2();
+            //this will work as long as the number is more than zero
+            return vector / vector.Magnitude;
+        }
 
         public Vector2()
         {
@@ -57,10 +81,9 @@ namespace MathLibrary
             return new Vector2(lhs.X * scalar, lhs.Y * scalar);
         }
 
-        public float GetMagnitude()
+        public static Vector2 operator /(Vector2 lhs, float scalar)
         {
-            return (float)Math.Sqrt(X * X + Y * Y);
+            return new Vector2(lhs.X / scalar, lhs.Y / scalar);
         }
-
     }
 }

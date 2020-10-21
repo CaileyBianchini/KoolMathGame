@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using MathLibrary;
 using Raylib_cs;
+
 namespace MathForGames
 {
     class Entity
     {
-        private char _icon = ' ';
+        protected char _icon = ' ';
         protected Vector2 _position;
         protected Vector2 _velocity;
         protected ConsoleColor _color;
@@ -70,7 +71,7 @@ namespace MathForGames
 
         public virtual void Draw()
         {
-            Raylib.DrawText(_icon.ToString(), (int)(_position.X * 32), (int)(_position.Y * 32), 32, _rayColor);
+            Raylib.DrawText(_icon.ToString(), (int)_position.X * 32, (int)_position.Y * 32, 32, _rayColor);
             Console.ForegroundColor = _color;
             Console.SetCursorPosition((int)_position.X, (int)_position.Y);
             Console.Write(_icon);
@@ -79,7 +80,7 @@ namespace MathForGames
 
         public virtual void End()
         {
-            Started = false;
+
         }
 
     }
