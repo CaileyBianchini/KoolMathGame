@@ -131,6 +131,9 @@ namespace MathForGames
 
             Entity entity = new Entity(0, 6, '>', ConsoleColor.Green);
             entity.Velocity.X = 1;
+
+            Enemy enemy = new Enemy(10, 10, Color.GREEN, 'm', ConsoleColor.Green);
+
             Player player = new Player(0, 6, Color.RED, '@', ConsoleColor.Green);
             scene2.AddEntity(player);
             player.Speed = 5;
