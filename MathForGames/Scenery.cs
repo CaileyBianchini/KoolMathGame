@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace MathForGames
+{
+    class Scenery : Entity
+    {
+        public Scenery(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
+            : base(x, y, icon, color)
+        {
+
+        }
+
+        public override void Update()
+        {
+            ConsoleKey keyPressed = Game.GetNextKey();
+
+            switch (keyPressed)
+            {
+                case ConsoleKey.A:
+                    _velocity.X = 0;
+                    break;
+                case ConsoleKey.D:
+                    _velocity.X = 0;
+                    break;
+                case ConsoleKey.W:
+                    _velocity.Y = 0;
+                    break;
+                case ConsoleKey.S:
+                    _velocity.Y = 0;
+                    break;
+                default:
+                    _velocity.X = 0;
+                    _velocity.Y = 0;
+                    break;
+            }
+            base.Update();
+
+            
+        }
+    }
+}

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+<<<<<<< Updated upstream
 using Raylib_cs;
 using MathLibrary;
+=======
+>>>>>>> Stashed changes
 
 namespace MathForGames
 {
@@ -11,6 +14,7 @@ namespace MathForGames
         public Player(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, icon, color)
         {
+<<<<<<< Updated upstream
             
         }
 
@@ -18,10 +22,14 @@ namespace MathForGames
             : this(x, y, icon, color)
         {
             _rayColor = rayColor;
+=======
+
+>>>>>>> Stashed changes
         }
 
         public override void Update()
         {
+<<<<<<< Updated upstream
             int xVelocity = -Convert.ToInt32(Game.GetKeyDown((int)(KeyboardKey.KEY_A))
                 + Convert.ToInt32(Game.GetKeyDown((int)(KeyboardKey.KEY_D));
 
@@ -56,5 +64,30 @@ namespace MathForGames
             base.Update();
         }
 
+=======
+            ConsoleKey keyPressed = Game.GetNextKey();
+
+            switch (keyPressed)
+            {
+                case ConsoleKey.A:
+                    _velocity.X = -2;
+                    break;
+                case ConsoleKey.D:
+                    _velocity.X = 2;
+                    break;
+                case ConsoleKey.W:
+                    _velocity.Y = -2;
+                    break;
+                case ConsoleKey.S:
+                    _velocity.Y = 2;
+                    break;
+                default:
+                    _velocity.X = 0;
+                    _velocity.Y = 0;
+                    break;
+            }
+            base.Update();
+        }
+>>>>>>> Stashed changes
     }
 }
