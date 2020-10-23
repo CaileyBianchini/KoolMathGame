@@ -29,29 +29,31 @@ namespace MathForGames
             _alertColor = Color.RED;
         }
 
-        public bool GetTargetInSight( Entity entity)
+        public bool GetTargetInSight()
         {
             if (Target == null)
                 return false;
 
-            Vector2 direction = Position - Target.Position;
+            Vector2 direction = Vector2.Normalize(Position - Target.Position);
 
-            if (Vector2.DotProduct(Forward, direction) == 1)
+            if (Vector2.DotProduct(Forward, direction) > 0.5)
                 return true;
-
-            return false;
+            else if (Vector2.DotProduct(Forward, direction) > 2)
+                return false;
+            else
+                return false;
         }
 
         public override void Update(float deltaTime)
         {
-            if(CheckTargetInSight())
-            {
+            if (GetTargetInSight() == true)
+                _rayColor = Color.BLACK;
+            else if (GetTargetInSight() == false)
                 _rayColor = Color.RED;
-            }
             else
-            {
-                _rayColor = Color.BLUE;
-            }
+                _rayColor = Color.WHITE;
+
+
             base.Update(deltaTime);
         }
     }
