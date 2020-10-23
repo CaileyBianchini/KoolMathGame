@@ -2,11 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 using Raylib_cs;
+using MathLibrary;
 
 namespace MathForGames
 {
     class Maze : Entity
     {
+        private Entity _target;
+        private Color _alertColor;
+
+        public Entity Target
+        {
+            get { return _target; }
+            set { _target = value; }
+        }
+
         public Maze(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, icon, color)
         {
@@ -14,17 +24,37 @@ namespace MathForGames
         }
 
         public Maze(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
-            : this(x, y, icon, color)
+            : base(x, y, rayColor, icon, color)
         {
-            _rayColor = rayColor;
+            _alertColor = Color.RED;
+        }
+
+        public bool CheckTargetInSight()
+        {
+            if (Target == null)
+                return false;
+
+            Vector2 direction = Position - Target.Position;
+
+            if (Vector2.DotProduct(Forward, direction) < 0)
+                return true;
+            else if (Vector2.DotProduct(Forward, direction) > 0.1)
+                return false;
+
+            return false;
         }
 
         public override void Update(float deltaTime)
         {
-            _position += _velocity * 0;
-            _position.X = Math.Clamp(_position.X, 0, Console.WindowWidth - 1);
-            _position.Y = Math.Clamp(_position.Y, 0, Console.WindowHeight - 1);
-
+            if (CheckTargetInSight() == true)
+            {
+                _rayColor = Color.RED;
+            }
+            else if (CheckTargetInSight() == false)
+            {
+                _rayColor = Color.BLUE;
+            }
+            base.Update(deltaTime);
         }
     }
 }
