@@ -94,6 +94,40 @@ namespace MathLibrary
             return new Vector2(lhs.X / scalar, lhs.Y / scalar);
         }
 
-        
+        public float X
+        {
+            get
+            {
+                return _x;
+            }
+            set
+            {
+                _x = value;
+            }
+        }
+        public float Y
+        {
+            get
+            {
+                return _y;
+            }
+            set
+            {
+                _y = value;
+            }
+        }
+
+        public Vector2()
+        {
+            _x = 0;
+            _y = 0;
+        }
+
+        public Vector2(float x, float y)
+        {
+            _x = x;
+            _y = y;
+        }
+
     }
 }
