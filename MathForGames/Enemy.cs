@@ -6,24 +6,24 @@ using MathLibrary;
 
 namespace MathForGames
 {
-    class Maze : Entity
+    class Enemy : Entity
     {
         private Entity _target;
         private Color _alertColor;
 
         public Entity Target
         {
-            get { return _target; }
-            set { _target = value; }
+            get{ return _target; }
+            set{ _target = value; }
         }
 
-        public Maze(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
+        public Enemy(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, icon, color)
         {
 
         }
 
-        public Maze(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
+        public Enemy(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, rayColor, icon, color)
         {
             _alertColor = Color.RED;
@@ -36,9 +36,9 @@ namespace MathForGames
 
             Vector2 direction = Position - Target.Position;
 
-            if (Vector2.DotProduct(Forward, direction) < 0)
+            if (Vector2.DotProduct(Forward, direction) < 0.5)
                 return true;
-            else if (Vector2.DotProduct(Forward, direction) > 0.1)
+            else if(Vector2.DotProduct(Forward, direction) > 0.5)
                 return false;
 
             return false;
@@ -46,13 +46,13 @@ namespace MathForGames
 
         public override void Update(float deltaTime)
         {
-            if (CheckTargetInSight() == true)
+            if(CheckTargetInSight() == true)
             {
                 _rayColor = Color.RED;
             }
             else if (CheckTargetInSight() == false)
             {
-                _rayColor = Color.BLUE;
+                _rayColor = Color.BLACK;
             }
             base.Update(deltaTime);
         }
