@@ -127,9 +127,7 @@ namespace MathForGames
             Console.Title = "Math for Games";
 
             //creates new scene for our actors to exsist in
-            Scene scene1 = new Scene();
-
-            MazeWalls();
+            Scene scene2 = new Scene();
 
             Entity entity = new Entity(0, 6, '>', ConsoleColor.Green);
             entity.Velocity.X = 1;
@@ -137,177 +135,19 @@ namespace MathForGames
             Enemy enemy = new Enemy(10, 10, Color.GREEN, 'm', ConsoleColor.Green);
 
             Player player = new Player(0, 6, Color.RED, '@', ConsoleColor.Green);
-
-            //temparray for loop to collapse the entities for maze
-            for (int ii = 0; ii < 1; ii++)
-            {
-
-                //18 down
-                //28 across
-                Maze maze1 = new Maze(1, 0, '╔', ConsoleColor.Red);
-                scene1.AddEntity(maze1);
-
-                for (int i = 1; i < 5; i++)
-                {
-                    Maze maze = new Maze(1, i, '║', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-
-                int j = 0;
-                for (j = 8; j < 18; j++)
-                {
-                    Maze maze = new Maze(1, j, '║', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-
-                Maze maze2 = new Maze(24, 0, '╗', ConsoleColor.Red);
-                scene1.AddEntity(maze2);
-
-                for (int i = 2; i < 24; i++)
-                {
-                    Maze maze = new Maze(i, 0, '═', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-
-                Maze maze3 = new Maze(1, j, '╚', ConsoleColor.Red);
-                scene1.AddEntity(maze3);
-
-                for (int i = 2; i < 20; i++)
-                {
-                    Maze maze = new Maze(i, j, '═', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-
-                Maze maze4 = new Maze(20, j, '╩', ConsoleColor.Red);
-                scene1.AddEntity(maze4);
-
-                for (int i = 21; i < 28; i++)
-                {
-                    Maze maze = new Maze(i, j, '═', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-
-                Maze maze5 = new Maze(28, j, '╝', ConsoleColor.Red);
-                scene1.AddEntity(maze5);
-
-                for (int i = 1; i < 18; i++)
-                {
-                    Maze maze = new Maze(28, i, '║', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-
-                for (int i = 1; i < 11; i++)
-                {
-                    Maze maze = new Maze(24, i, '║', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-
-                Maze maze6 = new Maze(24, 11, '╝', ConsoleColor.Red);
-                scene1.AddEntity(maze6);
-
-                for (int i = 4; i < 11; i++)
-                {
-                    Maze maze = new Maze(21, i, '║', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-
-                Maze maze7 = new Maze(21, 11, '╚', ConsoleColor.Red);
-                scene1.AddEntity(maze7);
-
-                Maze maze10 = new Maze(21, 4, '╗', ConsoleColor.Red);
-                scene1.AddEntity(maze10);
-
-                Maze maze8 = new Maze(22, 11, '═', ConsoleColor.Red);
-                scene1.AddEntity(maze8);
-
-                Maze maze9 = new Maze(23, 11, '═', ConsoleColor.Red);
-                scene1.AddEntity(maze9);
-
-                for (int i = 5; i < 21; i++)
-                {
-                    Maze maze = new Maze(i, 4, '═', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-
-                Maze maze11 = new Maze(12, 4, '╦', ConsoleColor.Red);
-                scene1.AddEntity(maze11);
-
-                for (int i = 5; i < 7; i++)
-                {
-                    Maze maze = new Maze(12, i, '║', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-
-                j = j - 1;
-
-                Maze maze12 = new Maze(20, j, '║', ConsoleColor.Red);
-                scene1.AddEntity(maze12);
-
-                j = j - 1;
-
-                Maze maze13 = new Maze(20, j, '║', ConsoleColor.Red);
-                scene1.AddEntity(maze13);
-
-                j = j - 1;
-
-                for (int i = 17; i < 24; i++)
-                {
-                    Maze maze = new Maze(i, j, '═', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-
-                Maze maze14 = new Maze(16, j, '╚', ConsoleColor.Red);
-                scene1.AddEntity(maze14);
-
-                Maze maze15 = new Maze(20, j, '╦', ConsoleColor.Red);
-                scene1.AddEntity(maze15);
-
-                for (int i = 9; i < j; i++)
-                {
-                    Maze maze = new Maze(16, i, '║', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-
-                Maze maze16 = new Maze(16, 13, '╣', ConsoleColor.Red);
-                scene1.AddEntity(maze16);
-
-                for (int i = 9; i < 16; i++)
-                {
-                    Maze maze = new Maze(i, 13, '═', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-
-                Maze maze17 = new Maze(9, 13, '╚', ConsoleColor.Red);
-                scene1.AddEntity(maze17);
-
-                for (int i = 9; i < 13; i++)
-                {
-                    Maze maze = new Maze(9, i, '║', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-
-                for (int i = 5; i < 13; i++)
-                {
-                    Maze maze = new Maze(i, j, '═', ConsoleColor.Red);
-                    scene1.AddEntity(maze);
-                }
-            }
-
-            scene1.AddEntity(player);
-            scene1.AddEntity(enemy);
+            scene2.AddEntity(player);
             player.Speed = 5;
-            enemy.Target = player;
             //scene2.AddEntity(entity);
 
             int startingSceneIndex = 0;
 
-            startingSceneIndex = AddScene(scene1);
+            startingSceneIndex = AddScene(scene2);
 
             SetCurrentScene(startingSceneIndex);
         }
 
 
-        //this will create entities for the maze walls, temperarily not using it
+        //this will create entities for the maze walls
         public void MazeWalls()
         {
             Scene scene1 = new Scene();
